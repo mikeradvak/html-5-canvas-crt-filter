@@ -25,8 +25,10 @@
       // Start the main loop.
       var main                = new Main(background_image, canvas, crt_filter, height, width);
       main.initialize();
-      // Set the update interval and begin the main loop.
-      setInterval(runMainLoop, update_interval);
+      // Set the update interval and begin the main loop (if browser supports getting canvas context).
+      if (this.canvas_element && this.canvas_element.getContext) {
+        setInterval(runMainLoop, update_interval);
+      }
       // The main loop, update, clear then draw.
       function runMainLoop () {
         main.update();
