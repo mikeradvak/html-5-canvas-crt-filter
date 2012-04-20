@@ -11,31 +11,6 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script type="text/javascript" src="javascripts/canvas_image_data.js"></script>
-    <script type="text/javascript" src="javascripts/crt_filter.js"></script>
-    <script type="text/javascript" src="javascripts/main.js"></script>
-    <script type="text/javascript">
-      var background_image    = new Image();
-      background_image.src    = 'images/github_logo.jpg';
-      var canvas              = document.getElementById('canvas');
-      var crt_filter          = new Crt();
-      var height              = 320;
-      var width               = 320;
-      var update_interval     = 100;
-      // Start the main loop.
-      var main                = new Main(background_image, canvas, crt_filter, height, width);
-      main.initialize();
-      // Set the update interval and begin the main loop (if browser supports getting canvas context).
-      if (canvas && canvas.getContext) {
-        setInterval(runMainLoop, update_interval);
-      }
-      // The main loop, update, clear then draw.
-      function runMainLoop () {
-        main.update();
-        main.clear();
-        main.draw();
-      }
-    </script>
   </head>
   <body>
     <div class="wrapper">
@@ -65,5 +40,30 @@
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
+        <script type="text/javascript" src="javascripts/canvas_image_data.js"></script>
+    <script type="text/javascript" src="javascripts/crt_filter.js"></script>
+    <script type="text/javascript" src="javascripts/main.js"></script>
+    <script type="text/javascript">
+      var background_image    = new Image();
+      background_image.src    = 'images/github_logo.jpg';
+      var canvas              = document.getElementById('canvas');
+      var crt_filter          = new Crt();
+      var height              = 320;
+      var width               = 320;
+      var update_interval     = 100;
+      // Start the main loop.
+      var main                = new Main(background_image, canvas, crt_filter, height, width);
+      main.initialize();
+      // Set the update interval and begin the main loop (if browser supports getting canvas context).
+      if (canvas && canvas.getContext) {
+        setInterval(runMainLoop, update_interval);
+      }
+      // The main loop, update, clear then draw.
+      function runMainLoop () {
+        main.update();
+        main.clear();
+        main.draw();
+      }
+    </script>
   </body>
 </html>
