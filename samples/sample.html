@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HTML 5 Canvas CRT Filter</title>
+	</head>
+	<body>
+		<canvas id="canvas" height="320" width="320">
+			Canvas not supported.
+		</canvas>
+		<p><a href="#" id="crt_link" onclick="main.toggleCrtFilter(document.getElementById('crt_link')); return false;">Turn CRT Filter On</a></p>
+		<script type="text/javascript" src="canvas_image_data.js"></script>
+		<script type="text/javascript" src="crt_filter.js?id=1"></script>
+		<script type="text/javascript" src="main.js?id=2"></script>
+		<script type="text/javascript">
+			var background_image	= new Image();
+			background_image.src	= 'github_logo.jpg';
+			var canvas		= document.getElementById('canvas');
+			var crt_filter		= new Crt();
+			var height		= 320;
+			var width		= 320;
+			var update_interval	= 100;
+			// Start the main loop.
+			var main		= new Main(background_image, canvas, crt_filter, height, width);
+			main.initialize();
+			// Set the update interval and begin the main loop.
+			setInterval(runMainLoop, update_interval);
+			// The game loop, update then draw.
+			function runMainLoop () {
+				main.update();
+				main.clear();
+				main.draw();
+			}
+		</script>
+	</body>
+</html>
