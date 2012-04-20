@@ -9,7 +9,10 @@ function Main (background_image, canvas_element, crt_filter, height, width) {
 Main.prototype = {
 	// Clear the context.
 	clear: function () {
-		this.canvas_context_tmp.clearRect(0, 0, width , height);
+		// Check whether browser supports getting canvas context.
+		if (this.canvas_element && this.canvas_element.getContext) {
+			this.canvas_context_tmp.clearRect(0, 0, width , height);
+		}
 	},
 	
 	// Draw a frame.
