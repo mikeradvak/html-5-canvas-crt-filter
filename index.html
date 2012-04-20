@@ -11,6 +11,29 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="javascript/canvas_image_data.js"></script>
+    <script type="text/javascript" src="javascript/crt_filter.js"></script>
+    <script type="text/javascript" src="javascript/main.js"></script>
+    <script type="text/javascript">
+      var background_image    = new Image();
+      background_image.src    = 'images/github_logo.jpg';
+      var canvas              = document.getElementById('canvas');
+      var crt_filter          = new Crt();
+      var height              = 320;
+      var width               = 320;
+      var update_interval     = 100;
+      // Start the main loop.
+      var main                = new Main(background_image, canvas, crt_filter, height, width);
+      main.initialize();
+      // Set the update interval and begin the main loop.
+      setInterval(runMainLoop, update_interval);
+      // The main loop, update, clear then draw.
+      function runMainLoop () {
+        main.update();
+        main.clear();
+        main.draw();
+      }
+    </script>
   </head>
   <body>
     <div class="wrapper">
@@ -26,22 +49,13 @@
       </header>
       <section>
         <h3>HTML 5 Canvas CRT Filter</h3>
-
-<p>Apply a CRT filter to a canvas in HTML 5.</p>
-
-<p>Many more comments coming, soon.</p>
-
-<p>Very, very very soon.</p>
-
-<p>This.</p>
-
-<p>Is.</p>
-
-<p>Just.</p>
-
-<p>Taking up.</p>
-
-<p>Space.</p>
+        <p>Applies a CRT-like filter to an HTML 5 canvas. The effect is achieved by applying a pixel-by-pixel transformation algorithm to the canvas image data.</p>
+        <p>To manipulate the canvas image data, by pixel, I'm using <a href="https://github.com/flother">flother's</a> <a href="https://github.com/flother/examples/blob/gh-pages/canvas-blur/v1/canvas-image.js">CanvasImageData class</a>.</p>
+        <h3>Example</h3>
+        <canvas id="canvas" height="320" width="320">
+          Canvas not supported.
+        </canvas>
+        <p><a href="#" id="crt_link" onclick="main.toggleCrtFilter(document.getElementById('crt_link')); return false;">Turn CRT Filter On</a></p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/mikeradvak">mikeradvak</a></p>
@@ -49,6 +63,5 @@
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
   </body>
 </html>
